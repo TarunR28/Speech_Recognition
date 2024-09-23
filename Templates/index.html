@@ -1,0 +1,69 @@
+<html><head></head>
+    <title>Audio Recorder</title>
+</head>
+<body>
+
+    <table style="width:100%">
+        <tbody><tr>
+            <td style="width:50%">
+                <h2>Record and Upload Audio</h2>
+
+                <button id="record">Record</button>
+                <button id="stop">Stop</button>
+                <span id="timer">00:00</span>
+                <audio id="audio"></audio>
+                <form id="uploadForm" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="audio_data" id="audioData">
+                </form>
+                <script src="script.js"></script>
+                <hl></hl>
+                <h2>Recorded Files</h2>
+                <ul>
+                    {% for file in files %}
+                    <li> 
+                        <audio controls="">
+                            <source src="{{ url_for('uploaded_file', filename=file) }}">
+                            Your browser does not support the audio element.
+                        </audio><br>
+                        {{file}}
+                        <a href="{{ url_for('uploaded_file', filename=file.split('.')[0] + '.txt') }}">Click here to see text</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td style="width:50%">
+                <h2>Type in your text to generate audio</h2>
+
+                <form action="/upload_text" method="post">
+                  <textarea name="text" rows="10" cols="50"></textarea>
+                  <br>
+                  <input type="submit" value="Upload">
+                </form>
+
+                <h2>Generated Audio Files</h2>
+                             <!-- Displaying wav files -->      
+                    <div style="width: 100%; max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+                                <ul style="list-style-type: none; padding: 0;">
+                                    {% for tts_file in tts_files %}
+                                    <li style="margin-bottom: 15px;">
+                                        <strong>{{ tts_file }}</strong>
+                                        <br>
+                                        <!-- Add audio player for the wav files -->
+                                        <audio controls>
+                                            <source src="{{ url_for('uploaded_tts_file', filename=tts_file) }}" type="audio/mp3">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </li>
+                                    {% else %}
+                                    <p>No Wav files generated yet.</p>
+                                    {% endfor %}
+                                </ul>
+                  </div>
+
+                <!-- insert list of files here -->
+            </td>
+        </tr>
+    </tbody></table>
+
+
+</body></html>
