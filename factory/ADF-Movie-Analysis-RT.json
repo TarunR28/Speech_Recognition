@@ -1,0 +1,9 @@
+{
+	"name": "ADF-Movie-Analysis-RT",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "60582b1e-2e89-46c9-9fb2-1d725c4cc9ab",
+		"tenantId": "f118ed0d-866e-4eda-93f0-2d70acba94b1"
+	}
+}

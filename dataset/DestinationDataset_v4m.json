@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_v4m",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Indian Movies"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
